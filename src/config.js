@@ -1,0 +1,3 @@
+const ERROR_TIMEOUT_SECONDS = 15;
+
+export default ERROR_TIMEOUT_SECONDS;

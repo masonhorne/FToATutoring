@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import TutorCard from "../misc/TutorCard.js";
 import firebase from "firebase";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 
-export default function TutorSearch({ subject }) {
+export default function TutorSearch() {
   useEffect(() => {
     fetchTutors();
   }, []);
+
+  const { state } = useLocation();
+  const subject = state.subject;
+
+  console.log(subject);
 
   const [tutors, setTutors] = useState([]);
 
@@ -25,23 +31,31 @@ export default function TutorSearch({ subject }) {
 
     const response = db
       .collection("tutors")
-      .where("subjects", "==", "Science")
-      .where("grade", ">=", "10");
+      .where("subjects", "==", subject)
+      .where("grade", ">=", 9);
+    // .where("capacity", "<", 3)
 
     // TODO: Fix the self replicating error somehow...
     const tutor_list = [];
     const tutor_data = await response.get();
+
     tutor_data.forEach((item) => {
       const item_data = item.data();
       console.log(`Tutor: ${JSON.stringify(item_data)}`);
-      tutor_list.push(item_data);
+      if (item_data["capacity"] < 3) {
+        tutor_list.push(item_data);
+      }
     });
     setTutors(tutor_list);
+
+    console.log("Passed Subject: " + subject);
   }
 
   return (
     <div className="tutorList">
-      <p>{_grade}</p>
+      <h3>
+        Tutors for {_grade}th grade {subject}
+      </h3>
       {tutors.map((item, i) => {
         return (
           <TutorCard
