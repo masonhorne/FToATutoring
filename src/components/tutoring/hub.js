@@ -15,8 +15,8 @@ export default function Hub() {
       <br />
       <div class="row" style={styles.margins}>
         <SubjectCard
-          name="Mathematics"
-          desc="Find some of the best Mathematics tutors available locally."
+          name="Math"
+          desc="Find some of the best Math tutors available locally."
           imgSrc="https://www.fife.ac.uk/media/3828/mathematics-png.jpg?anchor=center&mode=crop&width=1200&height=800&rnd=132155248940000000"
         />
         <SubjectCard

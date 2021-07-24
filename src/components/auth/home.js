@@ -15,10 +15,15 @@ export default function HomeAuth(props) {
         </p>
         <p>
           <div className="btn-box">
+            <Link to="/register-tutor">
+              <Button className="btn" title="Sign Up to Tutor" />
+            </Link>
             <Link to="/signin">
               <Button className="btn" title="Log in" />
             </Link>
-            <Button className="btn" title="Sign up" />
+            <Link to="/register-student">
+              <Button className="btn" title="Sign Up as a Student" />
+            </Link>
           </div>
         </p>
       </Jumbotron>

@@ -14,7 +14,8 @@ export default function TutorSearch({ subject }) {
   async function fetchTutors() {
     setTutors([]);
     const db = firebase.firestore();
-    db.collection("students")
+    const data = await db
+      .collection("students")
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((data) => data.data())
@@ -25,21 +26,29 @@ export default function TutorSearch({ subject }) {
 
     const response = db
       .collection("tutors")
-      .where("subjects", "==", "Math")
+      .where("subjects", "==", "Science")
       .where("grade", ">=", "10");
-    const data = await response.get();
-    data.docs.forEach((item) => {
-      setTutors([...tutors, item.data()]);
-      console.log(`${tutors}`);
+
+    // TODO: Fix the self replicating error somehow...
+    const tutor_data = await response.get();
+    tutor_data.forEach((item) => {
+      const item_data = item.data();
+      setTutors([...tutors, item_data]);
+      console.log(`Tutors: ${JSON.stringify(item_data)}`);
     });
   }
 
   return (
     <div className="tutorList">
       <p>{_grade}</p>
-      {tutors.map((item) => {
+      {tutors.map((item, i) => {
         return (
-          <TutorCard name={item.name} gradeLevel={`${item.grade}th grade`} />
+          <TutorCard
+            key={i}
+            name={item.name}
+            gradeLevel={`${item.grade}th grade`}
+            uid={item.uid}
+          />
         );
       })}
     </div>

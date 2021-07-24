@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import initFirebase from "../../../auth/firebase.auth";
+import { Link } from "react-router-dom";
 
 export default function TutorRegister() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,8 @@ export default function TutorRegister() {
             subjects: subjects,
             type: "Tutors",
             uid: firebase.auth().currentUser.uid,
-            students: []
+            students: [],
+            email: email
           });
       });
   }
@@ -62,7 +64,9 @@ export default function TutorRegister() {
         placeholder="Grade you teach the subject"
         value={grade}
       />
-      <button onClick={Register}>Submit</button>
+      <Link to="/home">
+        <button onClick={Register}>Submit</button>
+      </Link>
     </div>
   );
 }
