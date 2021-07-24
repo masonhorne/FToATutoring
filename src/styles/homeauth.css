@@ -1,0 +1,14 @@
+.container {
+  display: block;
+  margin: auto;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  margin-left: 10px;
+  margin-right: 10px;
+}
