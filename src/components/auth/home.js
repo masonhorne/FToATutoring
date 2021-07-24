@@ -1,8 +1,9 @@
-import Button from "../aux/Button.js";
+import Button from "../misc/Button.js";
 import React, { useEffect, useState } from "react";
 import "../../styles/homeauth.css";
 import { Jumbotron } from "react-bootstrap";
 import Firebase from "firebase";
+import { Link } from "react-router-dom";
 
 export default function HomeAuth(props) {
   return (
@@ -14,8 +15,10 @@ export default function HomeAuth(props) {
         </p>
         <p>
           <div className="btn-box">
-            <Button className="btn" title="Log in" />
-            <Button clasName="btn" title="Sign up" />
+            <Link to="/signin">
+              <Button className="btn" title="Log in" />
+            </Link>
+            <Button className="btn" title="Sign up" />
           </div>
         </p>
       </Jumbotron>

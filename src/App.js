@@ -38,6 +38,7 @@ function TutorView() {
       <div className="App">
         <TutorNavigationbar />
         <Switch>
+          <Route path="/see-students" component={SeeStudents} />
           <Route path="/signout" component={Signout} />
         </Switch>
       </div>
@@ -117,6 +118,7 @@ export default function App() {
     if (userType == "tutor") {
       return TutorView();
     } else {
+      console.log(``);
       return StudentView();
     }
   }

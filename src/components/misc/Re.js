@@ -1,12 +1,7 @@
 import React from "react";
 import "../../styles/bootstrap.min.css";
+import { Redirect } from "react-router-dom";
 
 export default function Misc() {
-  return (
-    <div>
-      <h3>Hello World</h3>
-      <h4>Welcome to Tutor App</h4>
-      <p>Use the dropdown above to navigate between pages available</p>
-    </div>
-  );
+  return <Redirect to="/home" />;
 }

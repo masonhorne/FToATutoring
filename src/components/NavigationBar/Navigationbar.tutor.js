@@ -10,14 +10,9 @@ export default function NavigationBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to="/tutor-home">
-                <span>Home</span>
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/searchfortutors">
-                <span>Search for Tutors</span>
+            <Nav.Link style={{ textDecoration: "" }}>
+              <Link to="/see-students">
+                <span>View Student Roster</span>
               </Link>
             </Nav.Link>
             <Nav.Link>

@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "firebase";
+import { Link } from "react-router-dom";
 
 export default function Signout() {
   function _signout() {
@@ -8,7 +9,9 @@ export default function Signout() {
   return (
     <div>
       <p>Sign out</p>
-      <button onClick={_signout}>Sign Out</button>
+      <Link to="/home">
+        <button onClick={_signout}>Sign Out</button>
+      </Link>
     </div>
   );
 }

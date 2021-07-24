@@ -23,7 +23,8 @@ export default function TutorRegister() {
             grade: grade,
             subjects: subjects,
             type: "Tutors",
-            uid: firebase.auth().currentUser.uid
+            uid: firebase.auth().currentUser.uid,
+            students: []
           });
       });
   }

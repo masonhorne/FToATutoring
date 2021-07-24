@@ -21,7 +21,8 @@ export default function Register() {
             name: `${fname} ${lname}`,
             grade: grade,
             email: email,
-            type: "student"
+            type: "student",
+            classes: []
           });
       });
   }
