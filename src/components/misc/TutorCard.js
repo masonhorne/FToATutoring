@@ -8,13 +8,13 @@ export default function TutorCard(props) {
     // Student UID
     const _uid = firebase.auth().currentUser.uid;
     // Variables to populate
-    const studentInfo = null;
-    const teacherInfo = null;
-    const classes = null;
-    const students = null;
+    var studentInfo = null;
+    var teacherInfo = null;
+    var classes = null;
+    var students = null;
 
     // Gets student info
-    firebase
+    await firebase
       .firestore()
       .collection("students")
       .doc(_uid)
@@ -25,7 +25,7 @@ export default function TutorCard(props) {
       });
 
     // Gets tutor info
-    firebase
+    await firebase
       .firestore()
       .collection("tutors")
       .doc(uid)
@@ -35,8 +35,26 @@ export default function TutorCard(props) {
         teacherInfo = data;
       });
 
-    console.log(teacherInfo);
+    var db = await firebase.firestore();
+
+    studentInfo.classes.push({
+      name: teacherInfo.name,
+      email: teacherInfo.email,
+      uid: teacherInfo.uid,
+      subject: teacherInfo.subjects
+    });
+    teacherInfo.students.push({
+      name: studentInfo.name,
+      grade: studentInfo.grade,
+      email: studentInfo.email,
+      uid: _uid
+    });
+
+    await db.collection("tutors").doc(teacherInfo.uid).set(teacherInfo);
+    await db.collection("students").doc(_uid).set(studentInfo);
+
     console.log(studentInfo);
+    console.log(teacherInfo);
   }
   return (
     <Card style={{ width: "23rem" }}>
@@ -45,7 +63,7 @@ export default function TutorCard(props) {
         <Card.Title>{props.name}</Card.Title>
         <Card.Subtitle>{props.gradeLevel}</Card.Subtitle>
       </Card.Body>
-      <Button>Enroll with {props.name}</Button>
+      <Button onClick={_onClick}>Enroll with {props.name}</Button>
     </Card>
   );
 }

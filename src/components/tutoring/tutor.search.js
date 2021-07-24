@@ -12,7 +12,6 @@ export default function TutorSearch({ subject }) {
   const [_grade, _setGrade] = useState(0);
 
   async function fetchTutors() {
-    setTutors([]);
     const db = firebase.firestore();
     const data = await db
       .collection("students")
@@ -30,12 +29,14 @@ export default function TutorSearch({ subject }) {
       .where("grade", ">=", "10");
 
     // TODO: Fix the self replicating error somehow...
+    const tutor_list = [];
     const tutor_data = await response.get();
     tutor_data.forEach((item) => {
       const item_data = item.data();
-      setTutors([...tutors, item_data]);
-      console.log(`Tutors: ${JSON.stringify(item_data)}`);
+      console.log(`Tutor: ${JSON.stringify(item_data)}`);
+      tutor_list.push(item_data);
     });
+    setTutors(tutor_list);
   }
 
   return (
