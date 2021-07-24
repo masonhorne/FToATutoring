@@ -23,14 +23,14 @@ import Signout from "./components/auth/signout";
 import Hub from "./components/tutoring/hub";
 
 //Tutors
-import SeeStudents from "./components/tutor/tutor";
+import SeeStudents from "./components/tutoring/tutor";
 
 //Students
 import TutorSearch from "./components/tutoring/tutor.search";
 
 //Misc
 import Test from "./components/test/test";
-import Aux from "./components/aux/Re";
+import Misc from "./components/misc/Re";
 
 function TutorView() {
   return (
@@ -63,11 +63,10 @@ function StudentView() {
 function AuthView() {
   return (
     <BrowserRouter>
-      {/* <_component /> */}
       <div className="App">
         <AuthNavigationbar />
         <Switch>
-          <Route path="/" exact component={Aux} />
+          <Route path="/" exact component={Misc} />
           <Route path="/home" component={HomeAuth} />
           <Route path="/signin" component={Signin} />
           <Route path="/register-tutor" component={TutorRegister} />
@@ -78,6 +77,7 @@ function AuthView() {
     </BrowserRouter>
   );
 }
+
 export default function App() {
   initFirebase();
 
@@ -101,7 +101,7 @@ export default function App() {
 
         if (!tutorSnapshot.empty) {
           setUserType("tutor");
-          confirm.log(userType);
+          console.log(userType);
         } else {
           setUserType("student");
           console.log(userType);
@@ -114,9 +114,13 @@ export default function App() {
   }
 
   if (loggedin) {
-    if (useState) {
+    if (userType == "tutor") {
+      return TutorView();
+    } else {
+      return StudentView();
     }
   }
+
   return AuthView();
 }
 
