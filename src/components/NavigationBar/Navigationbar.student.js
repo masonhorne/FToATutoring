@@ -16,11 +16,6 @@ export default function NavigationBar() {
               </Link>
             </Nav.Link>
             <Nav.Link>
-              <Link to="/searchfortutors">
-                <span>Search for Tutors</span>
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
               <Link to="/signout">
                 <span>Signout</span>
               </Link>

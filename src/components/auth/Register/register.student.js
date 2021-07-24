@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -55,7 +56,9 @@ export default function Register() {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <button onClick={register}>Submit</button>
+      <Link to="/home">
+        <button onClick={register}>Submit</button>
+      </Link>
     </div>
   );
 }

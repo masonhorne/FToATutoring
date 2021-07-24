@@ -115,12 +115,11 @@ export default function App() {
   }
 
   if (loggedin) {
-    if (userType == "tutor") {
+    if (userType === "tutor") {
       return TutorView();
-    } else {
-      console.log(``);
-      return StudentView();
     }
+    console.log(``);
+    return StudentView();
   }
 
   return AuthView();
