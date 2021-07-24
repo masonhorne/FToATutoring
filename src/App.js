@@ -27,6 +27,7 @@ import SeeStudents from "./components/tutoring/tutor";
 
 //Students
 import TutorSearch from "./components/tutoring/tutor.search";
+import SeeCourses from "./components/tutoring/student";
 
 //Misc
 import Test from "./components/test/test";
@@ -52,6 +53,7 @@ function StudentView() {
       <div className="App">
         <StudentNavigationbar />
         <Switch>
+          <Route path="/display-course" component={SeeCourses} />
           <Route path="/tutor-home" component={Hub} />
           <Route path="/searchfortutors" component={TutorSearch} />
           <Route path="/signout" component={Signout} />

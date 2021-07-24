@@ -63,6 +63,7 @@ export default function TutorSearch() {
             name={item.name}
             gradeLevel={`${item.grade}th grade`}
             uid={item.uid}
+            email={item.email}
           />
         );
       })}

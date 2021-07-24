@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import firebase from "firebase";
-import { Link, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Alert, Button, Form, FormControl, Container } from "react-bootstrap";
+import ERROR_TIMEOUT_SECONDS from "../../config";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  let history = useHistory();
 
   function _signin() {
     firebase
@@ -15,29 +21,44 @@ export default function SignIn() {
         var user = userCredential.user;
         console.log("Login Success! Signed in with user email: " + user.email);
         console.log("Full User Details: " + user);
+        history.push("/tutor-home");
       })
       .catch((error) => {
-        return <Redirect to="/signin" />;
+        setErrorMessage("Invalid username or password, Try again.");
+        setTimeout(() => setErrorMessage(null), ERROR_TIMEOUT_SECONDS * 1000);
+        history.push("/signin");
       });
   }
 
   return (
-    <div>
+    <Container>
       <p>Sign In</p>
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        value={email}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <Link to="/home">
-        <button onClick={_signin}>Sign In</button>
-      </Link>
-    </div>
+      <Form.Group style={{ maxWidth: "80%", margin: "auto" }}>
+        <Form.Label style={{ float: "left" }}>Email:</Form.Label>
+        <FormControl
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          value={email}
+        />
+      </Form.Group>
+      <Form.Group
+        style={{ maxWidth: "80%", margin: "auto", marginBottom: "15px" }}
+      >
+        <Form.Label style={{ float: "left" }}>Password:</Form.Label>
+        <FormControl
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+      </Form.Group>
+      <Button onClick={_signin}>Sign In</Button>
+
+      <Container>
+        <Alert style={{ opacity: errorMessage ? 1 : 0 }} variant="danger">
+          {errorMessage}
+        </Alert>
+      </Container>
+    </Container>
   );
 }

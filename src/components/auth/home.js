@@ -4,17 +4,18 @@ import "../../styles/homeauth.css";
 import { Jumbotron } from "react-bootstrap";
 import Firebase from "firebase";
 import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 export default function HomeAuth(props) {
   return (
-    <div className="container">
-      <Jumbotron>
+    <Container className="container">
+      <Jumbotron style={{ paddingTop: "5%" }}>
         <h3>Welcome to Tutor App</h3>
         <p>
           The app that connects you to <em>tutors</em>.
         </p>
         <p>
-          <div className="btn-box">
+          <Container className="btn-box">
             <Link to="/register-tutor">
               <Button className="btn" title="Sign Up to Tutor" />
             </Link>
@@ -24,9 +25,9 @@ export default function HomeAuth(props) {
             <Link to="/register-student">
               <Button className="btn" title="Sign Up as a Student" />
             </Link>
-          </div>
+          </Container>
         </p>
       </Jumbotron>
-    </div>
+    </Container>
   );
 }
