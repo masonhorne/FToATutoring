@@ -11,6 +11,7 @@ import {
   Collapse,
   Alert
 } from "react-bootstrap";
+import '../../../styles/universal.css';
 
 export default function TutorRegister() {
   let history = useHistory();
@@ -53,7 +54,7 @@ export default function TutorRegister() {
   return (
     <Container>
       <Container fluid style={{ padding: 15 }}>
-        <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
+        <h1 style={{ fontSize: 35, fontWeight: "bold", paddingTop: "1em" }}>
           Sign up as a Tutor!
         </h1>
       </Container>
@@ -119,7 +120,6 @@ export default function TutorRegister() {
             placeholder="Image URL here"
             value={imageURL}
           />
-          <Form.File />
         </Form.Group>
         <Link>
           <Button

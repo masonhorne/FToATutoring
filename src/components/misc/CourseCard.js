@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Alert, Container } from "react-bootstrap";
+import '../../styles/universal.css';
 
 export default function CourseCard({
   uid,

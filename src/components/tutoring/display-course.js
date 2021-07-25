@@ -3,6 +3,7 @@ import { Spinner } from "react-bootstrap";
 import firebase from "firebase";
 import { Container } from "react-bootstrap";
 import CourseCard from "../misc/CourseCard";
+import '../../styles/universal.css';
 
 export default function DisplayCourse() {
   useEffect(() => {

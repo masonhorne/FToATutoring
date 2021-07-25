@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import { Link, useHistory } from "react-router-dom";
 import { Container, Button, Form, FormControl, Alert } from "react-bootstrap";
+import '../../../styles/universal.css';
 
 export default function Register() {
   let history = useHistory();
@@ -40,7 +41,7 @@ export default function Register() {
   return (
     <Container>
       <Container fluid style={{ padding: 15 }}>
-        <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
+        <h1 style={{ fontSize: 35, fontWeight: "bold", paddingTop: "1rem" }}>
           Sign up as a Student!
         </h1>
       </Container>

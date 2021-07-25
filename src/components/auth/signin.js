@@ -3,6 +3,7 @@ import firebase from "firebase";
 import { useHistory } from "react-router-dom";
 import { Alert, Button, Form, FormControl, Container } from "react-bootstrap";
 import ERROR_TIMEOUT_SECONDS from "../../config";
+import '../../styles/universal.css';
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -32,8 +33,8 @@ export default function SignIn() {
 
   return (
     <Container>
-      <h3 style={{paddingTop: "1 em"}}>Sign In</h3>
-      <Form.Group style={{ maxWidth: "80%", margin: "auto" }}>
+      <h3 style={{paddingTop: "1em"}}>Sign In</h3>
+      <Form.Group style={{ maxWidth: "80%", margin: "auto" }} className="mb-3">
         <Form.Label style={{ float: "left" }}>Email:</Form.Label>
         <FormControl
           onChange={(e) => setEmail(e.target.value)}
@@ -43,6 +44,7 @@ export default function SignIn() {
       </Form.Group>
       <Form.Group
         style={{ maxWidth: "80%", margin: "auto", marginBottom: "15px" }}
+        className="mb-3"
       >
         <Form.Label style={{ float: "left" }}>Password:</Form.Label>
         <FormControl

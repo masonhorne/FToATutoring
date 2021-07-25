@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
+import '../../styles/universal.css';
 
 export default function Signout() {
   let history = useHistory();

@@ -5,6 +5,7 @@ import { Jumbotron } from "react-bootstrap";
 import Firebase from "firebase";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import '../../styles/universal.css';
 
 export default function HomeAuth(props) {
   return (

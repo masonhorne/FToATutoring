@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import firebase from "firebase";
 import { Alert, Form, FormControl, Container } from "react-bootstrap";
 import ERROR_TIMEOUT_SECONDS from "../../config.js";
+import '../../styles/universal.css';
 
 export default function TutorCard({
   uid,

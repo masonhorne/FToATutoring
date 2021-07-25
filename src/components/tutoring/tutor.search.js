@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import TutorCard from "../misc/TutorCard.js";
 import firebase from "firebase";
 import { useParams, useLocation, useHistory } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap";
+import '../../styles/universal.css';
 
 export default function TutorSearch() {
   useEffect(() => {

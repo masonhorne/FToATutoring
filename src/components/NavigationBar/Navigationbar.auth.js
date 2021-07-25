@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import '../../styles/universal.css';
 
 export default function NavigationBar() {
   return (
@@ -15,7 +16,7 @@ export default function NavigationBar() {
             height="50"
             className="d-inline-block align-top"
           />{" "}
-          F to A Tutoring
+          <span>F to A Tutoring </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

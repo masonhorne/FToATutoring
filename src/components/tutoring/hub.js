@@ -1,6 +1,7 @@
 import React from "react";
 import SubjectCard from "../misc/subject.card";
 import { Container, Row, Col } from "react-bootstrap";
+import '../../styles/universal.css';
 
 export default function Hub() {
   return (

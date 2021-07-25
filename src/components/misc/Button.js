@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles/bootstrap.min.css";
+import '../../styles/universal.css';
 
 export default function Button(props) {
   return (

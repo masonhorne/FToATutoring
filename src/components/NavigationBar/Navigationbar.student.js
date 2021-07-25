@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import '../../styles/universal.css';
 
 export default function NavigationBar() {
   return (
