@@ -8,6 +8,19 @@ By: **Rohan Fernandes, Paul Lin, Mason Horne**
 
 Here are images of the different screens throughout the app. From both tutor view and student view:
 
+![](https://i.imgur.com/IHkl80P.png)
+
+![](https://i.imgur.com/CdKRBGp.png)
+
+![](https://i.imgur.com/OJfRjOE.png)
+
+![](https://i.imgur.com/WkRFBm3.png)
+
+![](https://i.imgur.com/Tx8jWDk.jpg)
+
+![](https://i.imgur.com/lo259YT.png)
+
+![](https://i.imgur.com/6blKiwo.png)
 
 ## Notes
 
