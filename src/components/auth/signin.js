@@ -32,7 +32,7 @@ export default function SignIn() {
 
   return (
     <Container>
-      <p>Sign In</p>
+      <h3 style={{paddingTop: "1 em"}}>Sign In</h3>
       <Form.Group style={{ maxWidth: "80%", margin: "auto" }}>
         <Form.Label style={{ float: "left" }}>Email:</Form.Label>
         <FormControl
