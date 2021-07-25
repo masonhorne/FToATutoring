@@ -17,7 +17,6 @@ export default function TutorRegister() {
   const [lname, setLName] = useState("");
   const [grade, setGrade] = useState(null);
   const [subjects, setSubjects] = useState("");
-  const [capacity, setCapacity] = useState(null);
   const [imageURL, setImageURL] = useState("");
   function Register() {
     firebase
@@ -30,13 +29,13 @@ export default function TutorRegister() {
           .doc(firebase.auth().currentUser.uid)
           .set({
             name: `${fname} ${lname}`,
-            grade: grade,
+            grade: parseInt(grade),
             subjects: subjects,
             type: "Tutors",
             uid: firebase.auth().currentUser.uid,
             students: [],
             email: email,
-            capacity: capacity,
+            capacity: 0,
             image: imageURL
           });
       });
@@ -113,7 +112,7 @@ export default function TutorRegister() {
           />
           <Form.File />
         </Form.Group>
-        <Link to="/home">
+        <Link to="/see-students">
           <Button
             style={{ marginBottom: "10%" }}
             type="submit"

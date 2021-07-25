@@ -21,7 +21,7 @@ export default function Register() {
           .doc(firebase.auth().currentUser.uid)
           .set({
             name: `${fname} ${lname}`,
-            grade: grade,
+            grade: parseInt(grade),
             email: email,
             type: "student",
             classes: []
@@ -82,7 +82,7 @@ export default function Register() {
           />
         </Form.Group>
       </Form>
-      <Link to="/home">
+      <Link to="/tutor-home">
         <Button style={{ marginBottom: "10%" }} onClick={register}>
           Submit
         </Button>

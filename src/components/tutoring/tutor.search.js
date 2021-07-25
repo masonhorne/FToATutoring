@@ -32,7 +32,7 @@ export default function TutorSearch() {
     const response = db
       .collection("tutors")
       .where("subjects", "==", subject)
-      .where("grade", ">=", 9);
+      .where("grade", ">=", _grade);
     // .where("capacity", "<", 3)
 
     // TODO: Fix the self replicating error somehow...
@@ -42,9 +42,7 @@ export default function TutorSearch() {
     tutor_data.forEach((item) => {
       const item_data = item.data();
       console.log(`Tutor: ${JSON.stringify(item_data)}`);
-      if (item_data["capacity"] < 3) {
-        tutor_list.push(item_data);
-      }
+      tutor_list.push(item_data);
     });
     setTutors(tutor_list);
 
@@ -53,7 +51,7 @@ export default function TutorSearch() {
 
   return (
     <div className="tutorList">
-      <h3>
+      <h3 style={{ marginTop: "15px" }}>
         Tutors for {_grade}th grade {subject}
       </h3>
       {tutors.map((item, i) => {
@@ -64,6 +62,7 @@ export default function TutorSearch() {
             gradeLevel={`${item.grade}th grade`}
             uid={item.uid}
             email={item.email}
+            imgSrc={item.image}
           />
         );
       })}

@@ -86,7 +86,7 @@ export default function TutorCard({
   return (
     <Container>
       <Card style={{ width: "23rem" }}>
-        <Card.Img variant="bottom" src={imgSrc} />
+        <Card.Img style={{ height: "75%", borderRadius: "25%" }} src={imgSrc} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Subtitle style={{ padding: 10 }}>

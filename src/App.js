@@ -40,6 +40,9 @@ function TutorView() {
         <TutorNavigationbar />
         <Switch>
           <Route path="/see-students" component={SeeStudents} />
+          <Route path="/home">
+            <Redirect to="/see-students" />
+          </Route>
           <Route path="/signout" component={Signout} />
         </Switch>
       </div>
