@@ -23,11 +23,11 @@ import Signout from "./components/auth/signout";
 import Hub from "./components/tutoring/hub";
 
 //Tutors
-import SeeStudents from "./components/tutoring/tutor";
+import SeeStudents from "./components/tutoring/see-students";
 
 //Students
 import TutorSearch from "./components/tutoring/tutor.search";
-import SeeCourses from "./components/tutoring/student";
+import SeeCourses from "./components/tutoring/display-course";
 
 //Misc
 import Test from "./components/test/test";
@@ -60,6 +60,9 @@ function StudentView() {
           <Route path="/tutor-home" component={Hub} />
           <Route path="/searchfortutors" component={TutorSearch} />
           <Route path="/signout" component={Signout} />
+          <Route path="/home">
+            <Redirect to="/tutor-home" />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>

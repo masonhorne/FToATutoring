@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import { Container, Button, Spinner, Card } from "react-bootstrap";
 
-export default function DisplayStudents() {
+export default function SeeStudents() {
   const [loaded, setLoaded] = useState(false);
   const [students, setStudents] = useState([]);
 
