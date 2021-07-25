@@ -14,6 +14,9 @@ export default function Register() {
   const [grade, setGrade] = useState(null);
   const [error, setError] = useState(null);
 
+
+  var provider = new firebase.auth.GoogleAuthProvider()
+
   function register() {
     firebase
       .auth()
@@ -36,6 +39,18 @@ export default function Register() {
         setError(err);
         console.log("An error occurred in Register Student: " + error);
       });
+  }
+
+  function useGoogle() {
+    ;
+    firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        var creds = result.credential
+        var token = creds.accessToken
+        var user = result.user
+
+      })
   }
 
   return (
@@ -96,10 +111,15 @@ export default function Register() {
           Submit
         </Button>
       </Link>
+      { /*
+        <Button style={{ marginBottom: "10%" }} onClick={useGoogle}>
+          Or register with google
+        </Button>
+      */}
       <Alert style={{ opacity: error ? 1 : 0 }} variant="danger">
         {`Code ${error ? error.code : "200"} with message of ${
           error ? error.message : "Success"
-        }`}
+          }`}
       </Alert>
     </Container>
   );
