@@ -11,9 +11,12 @@ import {
   Collapse,
   Alert
 } from "react-bootstrap";
-import '../../../styles/universal.css';
+import "../../../styles/universal.css";
+import ERROR_TIMEOUT_SECONDS from "../../../config";
 
 export default function TutorRegister() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +26,7 @@ export default function TutorRegister() {
   const [subjects, setSubjects] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [error, setError] = useState(null);
+  const [files, setFiles] = useState(null);
   function Register() {
     firebase
       .auth()
@@ -49,6 +53,48 @@ export default function TutorRegister() {
         setError(error);
         console.log("An error occurred in Register Tutor: " + error);
       });
+  }
+  function useGoogle() {
+    if (!grade || !subjects) {
+      setError({ code: 204, message: "Grade and Subject must be filled out" });
+      setTimeout(() => setError(null), ERROR_TIMEOUT_SECONDS * 1000);
+    }
+    if (!error) {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var creds = result.credential;
+          var token = creds.accessToken;
+          var user = result.user;
+          var email = user.email;
+          var profilePic = user.photoURL;
+          var name = user.displayName;
+
+          console.log(
+            `Email is ${email}, profilePic: ${profilePic} name: ${name}`
+          );
+          firebase
+            .firestore()
+            .collection("tutors")
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+              name: name,
+              grade: parseInt(grade),
+              email: email,
+              type: "tutor",
+              subjects: subjects,
+              uid: firebase.auth().currentUser.uid,
+              students: [],
+              capacity: 0,
+              image: profilePic
+            });
+        })
+        .catch((error) => {
+          setError(error);
+          setTimeout(() => setError(null), ERROR_TIMEOUT_SECONDS * 1000);
+        });
+    }
   }
 
   return (
@@ -115,11 +161,7 @@ export default function TutorRegister() {
           <Form.Label style={{ float: "left" }}>
             Upload an ImageURL of yourself:
           </Form.Label>
-          <FormControl
-            onChange={(e) => setImageURL(e.target.value)}
-            placeholder="Image URL here"
-            value={imageURL}
-          />
+          <Form.File onChange={(e) => setFiles()} />
         </Form.Group>
         <Link>
           <Button
@@ -131,6 +173,9 @@ export default function TutorRegister() {
           </Button>
         </Link>
       </Form>
+      <Button style={{ marginBottom: "10%" }} onClick={useGoogle}>
+        Or register with google
+      </Button>
       <Alert style={{ opacity: error ? 1 : 0 }} variant="danger">
         {`Code ${error ? error.code : "200"} with message of ${
           error ? error.message : "Success"

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import { Link, useHistory } from "react-router-dom";
 import { Container, Button, Form, FormControl, Alert } from "react-bootstrap";
-import '../../../styles/universal.css';
+import "../../../styles/universal.css";
+import ERROR_TIMEOUT_SECONDS from "../../../config";
 
 export default function Register() {
   let history = useHistory();
@@ -14,8 +15,7 @@ export default function Register() {
   const [grade, setGrade] = useState(null);
   const [error, setError] = useState(null);
 
-
-  var provider = new firebase.auth.GoogleAuthProvider()
+  var provider = new firebase.auth.GoogleAuthProvider();
 
   function register() {
     firebase
@@ -42,15 +42,39 @@ export default function Register() {
   }
 
   function useGoogle() {
-    ;
-    firebase.auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        var creds = result.credential
-        var token = creds.accessToken
-        var user = result.user
+    if (!grade) {
+      setError({ code: 204, message: "Grade must be filled out" });
+      setTimeout(() => setError(null), ERROR_TIMEOUT_SECONDS * 1000);
+    }
+    if (!error) {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var creds = result.credential;
+          var token = creds.accessToken;
+          var user = result.user;
+          var email = user.email;
+          var profilePic = user.photoURL;
+          var name = user.displayName;
 
-      })
+          firebase
+            .firestore()
+            .collection("students")
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+              name: name,
+              grade: parseInt(grade),
+              email: email,
+              type: "student",
+              classes: []
+            });
+        })
+        .catch((error) => {
+          setError(error);
+          setTimeout(() => setError(null), ERROR_TIMEOUT_SECONDS * 1000);
+        });
+    }
   }
 
   return (
@@ -111,15 +135,13 @@ export default function Register() {
           Submit
         </Button>
       </Link>
-      { /*
-        <Button style={{ marginBottom: "10%" }} onClick={useGoogle}>
-          Or register with google
-        </Button>
-      */}
+      <Button style={{ marginBottom: "10%" }} onClick={useGoogle}>
+        Or register with google
+      </Button>
       <Alert style={{ opacity: error ? 1 : 0 }} variant="danger">
         {`Code ${error ? error.code : "200"} with message of ${
           error ? error.message : "Success"
-          }`}
+        }`}
       </Alert>
     </Container>
   );
