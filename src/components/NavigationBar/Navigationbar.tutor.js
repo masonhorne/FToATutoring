@@ -15,7 +15,7 @@ export default function NavigationBar() {
             height="50"
             className="d-inline-block align-top"
           />{" "}
-          Tutoring App
+          F to A Tutoring
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

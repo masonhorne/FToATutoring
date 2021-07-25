@@ -10,7 +10,7 @@ export default function HomeAuth(props) {
   return (
     <Container className="container">
       <Jumbotron style={{ paddingTop: "5%" }}>
-        <h3>Welcome to Tutor App</h3>
+        <h3>Welcome to F to A Tutoring</h3>
         <p>
           The app that connects you to <em>tutors</em>.
         </p>
