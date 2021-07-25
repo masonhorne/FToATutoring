@@ -9,7 +9,7 @@ export default function Signout() {
   }
   return (
     <Container>
-      <Link to="/home">
+      <Link to="/">
         <Button style={{ marginTop: "20%" }} onClick={_signout}>
           Sign Out
         </Button>
