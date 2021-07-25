@@ -21,7 +21,7 @@ export default function SignIn() {
         var user = userCredential.user;
         console.log("Login Success! Signed in with user email: " + user.email);
         console.log("Full User Details: " + user);
-        history.push("/tutor-home");
+        history.push("/home");
       })
       .catch((error) => {
         setErrorMessage("Invalid username or password, Try again.");
