@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import initFirebase from "../../../auth/firebase.auth";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Container,
   Form,
   FormControl,
-  Jumbotron
+  Jumbotron,
+  Collapse,
+  Alert
 } from "react-bootstrap";
 
 export default function TutorRegister() {
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFName] = useState("");
@@ -18,6 +21,7 @@ export default function TutorRegister() {
   const [grade, setGrade] = useState(null);
   const [subjects, setSubjects] = useState("");
   const [imageURL, setImageURL] = useState("");
+  const [error, setError] = useState(null);
   function Register() {
     firebase
       .auth()
@@ -38,6 +42,11 @@ export default function TutorRegister() {
             capacity: 0,
             image: imageURL
           });
+        history.push("/");
+      })
+      .catch((error) => {
+        setError(error);
+        console.log("An error occurred in Register Tutor: " + error);
       });
   }
 
@@ -112,7 +121,7 @@ export default function TutorRegister() {
           />
           <Form.File />
         </Form.Group>
-        <Link to="/see-students">
+        <Link>
           <Button
             style={{ marginBottom: "10%" }}
             type="submit"
@@ -122,6 +131,11 @@ export default function TutorRegister() {
           </Button>
         </Link>
       </Form>
+      <Alert style={{ opacity: error ? 1 : 0 }} variant="danger">
+        {`Code ${error ? error.code : "200"} with message of ${
+          error ? error.message : "Success"
+        }`}
+      </Alert>
     </Container>
   );
 }
