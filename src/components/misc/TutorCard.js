@@ -84,8 +84,8 @@ export default function TutorCard({
     console.log(teacherInfo);
   }
   return (
-    <Container>
-      <Card style={{ width: "23rem" }}>
+    <React.Fragment>
+      <Card style={{ width: "18rem", height: "24rem", margin: "2em auto" }}>
         <Card.Img style={{ height: "75%", borderRadius: "25%" }} src={imgSrc} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
@@ -106,6 +106,6 @@ export default function TutorCard({
           {message}
         </Alert>
       </Container>
-    </Container>
+    </React.Fragment>
   );
 }

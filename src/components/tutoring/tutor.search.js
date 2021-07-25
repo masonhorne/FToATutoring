@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TutorCard from "../misc/TutorCard.js";
 import firebase from "firebase";
 import { useParams, useLocation, useHistory } from "react-router-dom";
+import {Container, Row, Col} from "react-bootstrap"
 
 export default function TutorSearch() {
   useEffect(() => {
@@ -54,18 +55,24 @@ export default function TutorSearch() {
       <h3 style={{ marginTop: "15px" }}>
         Tutors for {_grade}th grade {subject}
       </h3>
-      {tutors.map((item, i) => {
-        return (
-          <TutorCard
-            key={i}
-            name={item.name}
-            gradeLevel={`${item.grade}th grade`}
-            uid={item.uid}
-            email={item.email}
-            imgSrc={item.image}
-          />
-        );
-      })}
+      <Container fluid>
+        <Row>
+        {tutors.map((item, i) => {
+          return (
+            <Col>
+              <TutorCard
+                key={i}
+                name={item.name}
+                gradeLevel={`${item.grade}th grade`}
+                uid={item.uid}
+                email={item.email}
+                imgSrc={item.image}
+              />
+            </Col>
+          );
+        })}
+        </Row>
+      </Container>
     </div>
   );
 }
