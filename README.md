@@ -82,5 +82,5 @@ For Tutors
 
 ## Links
 - [Devpost](https://devpost.com/software/f-to-a-tutoring)
-- [Website](https://watchyourgradesflyoutthegoddamnwindow.us/)
+- [Website](https://f2a.netlify.app/)
 - [Replit](https://replit.com/@Paul11100/HackyBirthdayMLH)
